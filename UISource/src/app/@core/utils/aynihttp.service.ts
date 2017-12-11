@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 
+
 @Injectable()
 export class AyniHttpService {
     constructor(protected client: HttpClient,
@@ -36,6 +37,7 @@ export class AyniHttpService {
     get<T>(url: string): Observable<T> {
         let headers = new HttpHeaders();
         headers = this.setAuthentication(headers);
+        url =  environment.apihost + url;
         return this.client.get<T>(url, { headers: headers });
     }
     put(url: string, body?: any | null): Observable<Object> {

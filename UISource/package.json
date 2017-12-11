@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host localhost --port 50005 --proxy-config proxy.config.json",
+    "start": "ng serve --host localhost --port 50005",
     "start:hmr": "ng serve --hmr",
     "start:aot": "ng serve --aot",
     "build": "rimraf dist && ng build",

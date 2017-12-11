@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  apihost: 'http://localhost:50001',
   session_end_url: 'http://localhost:4200/index.html#home/sysmessage',
   auth_callback: 'http://localhost:4200/index.html#callback',
   auth_domain: 'aynilab.auth0.com',
