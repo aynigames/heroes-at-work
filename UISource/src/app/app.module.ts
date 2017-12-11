@@ -43,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    NgxTypeaheadModule,    
+    NgxTypeaheadModule,
   ],
   bootstrap: [AppComponent],
   providers: [

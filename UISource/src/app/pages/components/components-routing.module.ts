@@ -9,13 +9,13 @@ const routes: Routes = [{
   path: '',
   component: ComponentsComponent,
   children: [
-  {
-    path: 'tree',
-    component: TreeComponent,
-  }, {
-    path: 'notifications',
-    component: NotificationsComponent,
-  },
+    {
+      path: 'tree',
+      component: TreeComponent,
+    }, {
+      path: 'notifications',
+      component: NotificationsComponent,
+    },
   ],
 }];
 

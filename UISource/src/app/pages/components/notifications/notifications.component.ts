@@ -9,7 +9,7 @@ import 'style-loader!angular2-toaster/toaster.css';
   templateUrl: './notifications.component.html',
 })
 export class NotificationsComponent {
-  constructor(private toasterService: ToasterService) {}
+  constructor(private toasterService: ToasterService) { }
 
   config: ToasterConfig;
 
@@ -42,15 +42,15 @@ export class NotificationsComponent {
     this.showToast(this.type, this.title, this.content);
   }
 
-  openRandomToast () {
+  openRandomToast() {
     const typeIndex = Math.floor(Math.random() * this.types.length);
     const quoteIndex = Math.floor(Math.random() * this.quotes.length);
     const type = this.types[typeIndex];
     const quote = this.quotes[quoteIndex];
 
     this.showToast(type, quote.title, quote.body);
-  };
-
+  }
+  
   private showToast(type: string, title: string, body: string) {
     this.config = new ToasterConfig({
       positionClass: this.position,
