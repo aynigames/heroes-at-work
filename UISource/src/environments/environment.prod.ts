@@ -1,8 +1,9 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
 export const environment = {
-  production: true,
+  production: false,
+  session_end_url: 'http://localhost:4200/index.html#home/sysmessage',
+  auth_callback: 'http://localhost:4200/index.html#callback',
+  auth_domain: 'aynilab.auth0.com',  
+  auth_scope: 'openid email',  
+  audience : 'http://ayniplay.com/ayniplay-gameapi',
+  clientId: 'WCd9TkS2vH6VycgCYQocCwpsNs1WC8T7',  
 };

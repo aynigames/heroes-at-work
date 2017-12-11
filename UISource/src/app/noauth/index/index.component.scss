@@ -1,0 +1,21 @@
+.index-team {
+    // background: url(/assets/images/team.png) no-repeat center center fixed;
+    position: relative;
+    max-width: 1200px;
+    margin: 5px auto;
+    line-height: 1;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.index-content {
+    position: absolute;
+    padding: 25% 15px;
+    top: 0;
+    left: 46%;
+    background:rgba(0, 0, 0, 0.5);
+    height: 100%;
+}

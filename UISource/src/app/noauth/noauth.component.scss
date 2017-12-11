@@ -1,0 +1,25 @@
+:host /deep/ {
+    $auth-layout-padding: 0;
+  
+    nb-layout .layout .layout-container .content .columns nb-layout-column {
+      padding: $auth-layout-padding;
+      overflow: hidden !important;
+    }
+  
+    nb-card {
+    //   min-height: calc(100vh - 2 * #{$auth-layout-padding});
+    }
+
+  
+    // TODO rewrite when develop responsive
+    @media (max-width: 550px) {
+      /deep/ nb-layout .layout .layout-container .content .columns nb-layout-column {
+        padding: 0;
+      }
+      nb-card {
+        border-radius: 0;
+        // min-height: 100vh;
+      }
+    }
+}  
+

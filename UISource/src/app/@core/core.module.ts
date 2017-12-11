@@ -5,6 +5,8 @@ import { NbAuthModule, NbDummyAuthProvider } from '@nebular/auth';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
+import { AyniHttpService } from './utils/aynihttp.service';
+import { AuthService } from './utils/auth.service';
 
 const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
@@ -22,6 +24,8 @@ const NB_CORE_PROVIDERS = [
     },
   }).providers,
   AnalyticsService,
+  AyniHttpService,
+  AuthService,
 ];
 
 @NgModule({

@@ -1,0 +1,14 @@
+{
+    "/api": {
+      "target": "http://localhost:50001",
+      "secure": false,
+      "pathRewrite": {
+        "^/api": "api"
+      }
+    },
+    "/identity": {
+      "target": "http://localhost:50001",
+      "secure": false
+    }
+  }
+  

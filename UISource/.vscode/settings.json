@@ -1,4 +1,10 @@
 {
     "typescript.tsdk": "./node_modules/typescript/lib",
-    "tslint.enable": false
+    "tslint.enable": false,
+    "workbench.colorCustomizations": {
+        "statusBar.background" : "#c23131",
+        "statusBar.noFolderBackground" : "#c23131",
+        "statusBar.debuggingBackground": "#c23131"
+    }
 }
+

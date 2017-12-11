@@ -1,0 +1,131 @@
+/**
+ * @license
+ * Copyright Akveo. All Rights Reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+ 
+ @import '../../@theme/styles/themes';
+
+ :host /deep/ {
+    // TODO rewrite when develop responsive
+    @media (max-width: 550px) {
+      .accept-group {
+        font-size: 12px;
+        padding: 0;
+      }
+    }
+  
+    form {
+      width: 100%;
+    }
+
+    a {
+        &:hover {
+            text-decoration: none !important;
+        }
+    }
+
+    .navbar {
+        overflow: hidden;
+        position: fixed;
+        display: inline-block;
+        top:0;
+        right:0;
+        left:0;
+        width: 100%;
+        min-height: 50px;
+        // border: 1px solid white;
+        transition: top 0.3 ease;
+        z-index: 10;
+        background: nb-theme(color-bg);
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+            button {
+                display: block;
+                padding-left: 25px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .navbar-logo {
+            font-size: 26px;
+            font-weight: 900;
+        }
+
+        .navbar-menu {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+        }
+
+    }
+
+    .footer {
+        max-width: 100%;
+        background: nb-theme(color-bg);
+    }
+  
+    .alert {
+      text-align: center;
+    }
+  
+    .title {
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+  
+    .sub-title {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+  
+    .checkbox {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: normal;
+    }
+  
+    .form-group.accept-group {
+      display: flex;
+      justify-content: space-between;
+      margin: 2rem 0;
+  
+      .forgot-password {
+        line-height: 2;
+      }
+    }
+  
+    .links {
+      text-align: center;
+      margin-top: 1.75rem;
+      z-index: 10;
+      
+        .title {
+
+        }
+  
+        .social {
+            margin: 1.5rem 0 2.5rem;
+            a {
+                font-size: 3rem;
+                margin: 0 1rem;
+                text-decoration: none;
+                
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
