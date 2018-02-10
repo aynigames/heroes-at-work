@@ -3,14 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'ngx-game-card',
   styleUrls: ['./game-card.component.scss'],
-  template: `
-    <nb-card>
-      <div class="details">
-        <div class="title">{{ title }}</div>
-        <div class="status">{{ on ? 'ON' : 'OFF' }}</div>
-      </div>
-    </nb-card>
-  `,
+  templateUrl: './game-card.component.html',
 })
 export class GameCardComponent {
 
