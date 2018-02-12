@@ -32,22 +32,25 @@ export class AyniHttpService {
     PostJson(url: string, payload?: any) {
         let headers = this.setJsonHttpOptions();
         headers = this.setAuthentication(headers);
+        url = environment.web_api_host + url;
         return this.client.post(url, payload, { headers: headers });
     }
     get<T>(url: string): Observable<T> {
         let headers = new HttpHeaders();
         headers = this.setAuthentication(headers);
-        url =  environment.apihost + url;
+        url = environment.web_api_host + url;
         return this.client.get<T>(url, { headers: headers });
     }
     put(url: string, body?: any | null): Observable<Object> {
         let headers = new HttpHeaders();
         headers = this.setAuthentication(headers);
+        url = environment.web_api_host + url;
         return this.client.put(url, body, { headers: headers });
     }
     delete(url: string): Observable<Object> {
         let headers = new HttpHeaders();
         headers = this.setAuthentication(headers);
+        url = environment.web_api_host + url;
         return this.client.delete(url, { headers: headers });
     }
 }
