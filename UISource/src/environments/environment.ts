@@ -6,5 +6,5 @@
   auth_scope: 'openid email',
   audience: 'http://ayniplay.com/ayniplay-gameapi',
   clientId: 'WCd9TkS2vH6VycgCYQocCwpsNs1WC8T7',
-  web_api_host: 'http://localhost:50001',
+  web_api_host: 'https://ayniplay-gameapi-dev.azurewebsites.net',
 };

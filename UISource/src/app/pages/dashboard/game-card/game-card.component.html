@@ -1,17 +1,12 @@
 <nb-card>
   <div class="details">
     <div class="title">{{ title }}</div>
-    <div class="status">In Progress</div>
+    <div class="status">{{status}}</div>
     <div class="row">
-      <div class="col-md-2">
-          <img src="assets/images/nick.png" alt="..." class="img-thumbnail">
-      </div>
-      <div class="col-md-2">
-          <img src="assets/images/lee.png" alt="..." class="img-thumbnail">
-      </div>
-      <div class="col-md-2">
-          <img src="assets/images/kate.png" alt="..." class="img-thumbnail">
-      </div>            
+      <div class="col-md-2" *ngFor="let item1 of players">
+          <img src="{{item1.avatar}}" title="{{item1.fullName}}" alt="..." class="img-thumbnail">
+      </div>          
     </div>
   </div>
+
 </nb-card>

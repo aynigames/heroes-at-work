@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class GameCardComponent {
 
   @Input() title: string;
-  @Input() type: string;
+  @Input() status: string;
+  @Input() players: Array<any>;
   @Input() on: boolean = true;
 }

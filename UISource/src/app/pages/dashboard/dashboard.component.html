@@ -6,16 +6,11 @@
         <nb-card-body>
           <div class="info">
             <div class="row">
-                <div class="col-xxxl-3 col-md-4">
-                  <ngx-game-card title="Rollerddd" type="success">
-                    <i class="nb-roller-shades"></i>
-                  </ngx-game-card>
+                <div class="col-xxxl-3 col-md-4" *ngFor="let item of gameList">
+                    <ngx-game-card title="{{item.name}}" status="{{item.status}}" [players]="item.leaderBoard">
+                        <i class="nb-roller-shades"></i>
+                    </ngx-game-card>
                 </div>
-                <div class="col-xxxl-3 col-md-4">
-                  <ngx-game-card title="Rollerddd" type="success">
-                    <i class="nb-roller-shades"></i>
-                  </ngx-game-card>
-                </div>   
             </div>
          
           </div>
