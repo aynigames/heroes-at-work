@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
     // console.log(translate.getBrowserCultureLang());
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang);  
+    themeService.changeTheme('default');
   }
 
   ngOnInit(): void {
