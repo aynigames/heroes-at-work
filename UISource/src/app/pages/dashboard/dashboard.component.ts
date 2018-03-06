@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit  {
     this.gameService.getCurrentUserGames().subscribe(res => {
       
       res.forEach(el => {
-        
+          el.urlDetail = '/game';
           el.leaderBoard = [{
             'memberId': 155,
             'playerId': 0,

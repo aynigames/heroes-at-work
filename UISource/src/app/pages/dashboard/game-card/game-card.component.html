@@ -1,6 +1,12 @@
 <nb-card>
   <div class="details">
-    <div class="title">{{ title }}</div>
+    <div class="title">
+        <a href="#/pages/game">
+            {{ title }}
+        </a>        
+      
+
+    </div>
     <div class="status">{{status}}</div>
     <div class="row">
       <div class="col-md-2" *ngFor="let item1 of players">
