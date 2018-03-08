@@ -21,7 +21,7 @@ export class GameComponent implements OnInit  {
 
 
   ngOnInit(): void {
-    let self = this;
+    const self = this;
     this.gameService.getGame(this.id).subscribe(res => {
       self.game = res;
     });
