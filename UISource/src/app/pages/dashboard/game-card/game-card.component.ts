@@ -6,9 +6,5 @@ import { Component, Input } from '@angular/core';
   templateUrl: './game-card.component.html',
 })
 export class GameCardComponent {
-
-  @Input() title: string;
-  @Input() status: string;
-  @Input() players: Array<any>;
-  @Input() on: boolean = true;
+  @Input() game: any;
 }

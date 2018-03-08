@@ -18,4 +18,9 @@ export class GameService {
   getCurrentUserGames(): Observable<any[]> {
     return this.aynihttpservice.get<any[]>('/api/games');
   }
+
+  getGame(gameId: Number): Observable<any> {
+    return this.aynihttpservice.get<any[]>('/api/games/' + gameId);
+  } 
+
 }

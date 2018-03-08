@@ -1,15 +1,13 @@
 <nb-card>
   <div class="details">
     <div class="title">
-        <a href="#/pages/game">
-            {{ title }}
-        </a>        
-      
-
+        <a href="#/pages/game/{{game.gameId}}">
+            {{ game.name }}
+        </a>
     </div>
-    <div class="status">{{status}}</div>
+    <div class="status">{{game.status}}</div>
     <div class="row">
-      <div class="col-md-2" *ngFor="let item1 of players">
+      <div class="col-md-2" *ngFor="let item1 of game.leaderBoard">
           <img src="{{item1.avatar}}" title="{{item1.fullName}}" alt="..." class="img-thumbnail">
       </div>          
     </div>

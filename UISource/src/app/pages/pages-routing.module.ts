@@ -12,7 +12,7 @@ const routes: Routes = [{
     path: 'dashboard',
     component: DashboardComponent,
   }, {
-    path: 'game',
+    path: 'game/:id',
     component: GameComponent,
   }, {    
     path: 'ui-features',
