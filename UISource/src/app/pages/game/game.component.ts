@@ -14,9 +14,7 @@ export class GameComponent implements OnInit  {
   public game: any = {};
   public dataPointToAdd: any = {};
   public pointList: Array<String> = ['1', '5', '10', '50'];
-  @ViewChild('engineTemplate') private modalTemplate: TemplateRef<any>;;
-  //@ViewChild("engineTemplate") private engineModal: TemplateRef<any>;
-  //dialog: NgbModalRef | null;
+  @ViewChild('engineTemplate') private modalTemplate: TemplateRef<any>;
   constructor(        
     private modalService: NgbModal,
     protected router: Router,
@@ -29,24 +27,20 @@ export class GameComponent implements OnInit  {
   ngOnInit(): void {
     const self = this;
     this.gameService.getGame(this.id).subscribe(res => {
-      if(res.players != null)
-        if(res.players[0] == null)
-          res.players = [];
-      //console.log('res: ', res);
       self.game = res;
     });
   }
-  openModel():Boolean{
+
+  openModel(): Boolean {
     this.modalService.open(this.modalTemplate, {size: 'lg'}).result.then((result) => {
-      //this.closeResult = `Closed with: ${result}`;
+      // this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });    
     return false;
   }
 
   onChangePointCombo(point: string) { 
-    console.log('point: ', point)
     this.dataPointToAdd.points = point;
   }
 
