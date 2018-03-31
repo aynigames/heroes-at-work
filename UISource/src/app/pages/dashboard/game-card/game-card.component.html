@@ -7,8 +7,8 @@
     </div>
     <div class="status">{{game.status}}</div>
     <div class="row">
-      <div class="col-md-2" *ngFor="let item1 of game.leaderBoard">
-          <img src="{{item1.avatar}}" title="{{item1.fullName}}" alt="..." class="img-thumbnail">
+      <div class="col-md-2" *ngFor="let item1 of game.players">
+          <img src="{{item1.profileImageUrl}}" title="{{item1.fullName}}" alt="..." class="img-thumbnail">
       </div>          
     </div>
   </div>

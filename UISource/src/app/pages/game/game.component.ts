@@ -3,6 +3,10 @@ import { GameService } from 'app/@core/data/game.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MemberService } from 'app/@core/data/members.service';
+import { Member } from 'app/models/member';
+import { Game } from 'app/models/game';
+import { Player } from 'app/models/player';
 
 @Component({
   selector: 'ngx-game',
@@ -11,37 +15,115 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class GameComponent implements OnInit  {
   public id: number;
-  public game: any = {};
+  
+  public game: Game = new Game();
+  public currentMember: Member;
+  public currentPlayer: Player = new Player();
   public dataPointToAdd: any = {};
   public pointList: Array<String> = ['1', '5', '10', '50'];
+  public optionRemainingPoint: any = {};
+  public optionCurrentScore: any = {};
+  public optionDaysLeft: any = {};
+  public currentIsPlaying: Boolean = false;
+  public value: number = 80;
+
+
+
+  
   @ViewChild('engineTemplate') private modalTemplate: TemplateRef<any>;
   constructor(        
     private modalService: NgbModal,
     protected router: Router,
     private route: ActivatedRoute,
-    private gameService: GameService) {
+    private gameService: GameService,
+    private memberService: MemberService) {
       this.id = +this.route.snapshot.paramMap.get('id');
   } 
 
 
   ngOnInit(): void {
     const self = this;
-    this.gameService.getGame(this.id).subscribe(res => {
-      self.game = res;
+
+    this.memberService.getCurrent().subscribe( resCurrent => {
+      self.currentMember = resCurrent;
+      this.gameService.getGame(this.id).subscribe(res => {
+        const v_startedOn: any = new Date(res.startedOn);
+        const v_endedOn: any = new Date(res.endedOn);
+        const v_currentDate: any = new Date();
+        res.totalDays = (v_endedOn - v_startedOn) / (24 * 60 * 60 * 1000);
+        res.daysLeft = (v_endedOn - v_currentDate) / (24 * 60 * 60 * 1000);
+        res.players.forEach(player => {
+          if (player.memberId === self.currentMember.memberId){
+            self.currentPlayer = player;
+            self.currentIsPlaying = true;
+          }
+        });
+        self.game = res;
+        self.optionRemainingPoint = self.getChartOption(self.game.settings.allowed_points, self.currentPlayer.giverScore);
+        self.optionCurrentScore = self.getChartOption(self.game.settings.allowed_points, self.currentPlayer.playerScore);
+        self.optionDaysLeft = self.getChartOption(self.game.totalDays, self.game.daysLeft);
+      });
     });
   }
 
-  openModel(): Boolean {
+  openModel(player: any): Boolean {
+    const self = this;
     this.modalService.open(this.modalTemplate, {size: 'lg'}).result.then((result) => {
-      // this.closeResult = `Closed with: ${result}`;
+      if (result.toLowerCase() === 'ok'){
+        const pointObject = {
+          'score': parseInt(this.dataPointToAdd.points, 10),
+          'description': 'string',
+          'tags': ['string'],
+        };
+        self.gameService.addPoints(player.playerId, pointObject).subscribe();
+
+      }
     }, (reason) => {
-      // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });    
     return false;
   }
 
   onChangePointCombo(point: string) { 
     this.dataPointToAdd.points = point;
+  }
+
+  private getChartOption(total: number, value: number): any{
+    const optionChart: any = {};  
+    optionChart.tooltip = { trigger: 'item', formatter: '{a} <br/>{b} : {c} ({d}%)'};
+    optionChart.series = [ { name: ' ', clockWise: true, hoverAnimation: false, type: 'pie', center: ['45%', '50%'], radius: ['80%', '90%'], data: [] } ];
+    optionChart.series[0].data = [
+        {
+          value: value,
+          name: ' ',
+          label: {
+            normal: {
+              position: 'center',
+              formatter: '{d}%',
+              textStyle: { fontSize: '22', fontFamily: 'Helvetica', fontWeight: '600', color: '#2a2a2a'},
+            },
+          },
+          tooltip: { show: false },
+          itemStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [ { offset: 0, color: '#42db7d' }, { offset: 1, color: '#42db7d' }]),
+              shadowColor: 'rgba(0, 0, 0, 0)',
+              shadowBlur: 0,
+              shadowOffsetX: 0,
+              shadowOffsetY: 3,
+            },
+          },
+          hoverAnimation: false,
+        },
+        {
+          value: total - value,
+          name: ' ',
+          tooltip: { show: false },
+          label: {normal: { position: 'inner' } },
+          itemStyle: { normal: { color: '#ebeff5' },
+          },
+        },
+      ]; 
+    return optionChart;
   }
 
 }

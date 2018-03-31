@@ -1,23 +1,27 @@
 <h2>{{ game.name}} </h2>
-
+<span>IsPlaying: {{ currentIsPlaying}}</span>
 <div class="row">
   <div class="col-xxxl-3 col-md-4">
       <nb-card class="solar-card">
           <nb-card-header>Remaining Score</nb-card-header>
           <nb-card-body>
-            <div class="info" style="text-align:center;">
-              <h3>180</h3> points
-            </div>
+              <div style="height: 92px;" echarts [options]="optionRemainingPoint" class="echart"></div>               
+              <div class="info">
+                <div class="value">{{ currentPlayer.giverScore}} points</div>
+                <div class="details"><span> of</span> {{ game.settings.allowed_points}}</div>
+              </div>
           </nb-card-body>
-        </nb-card>     
+      </nb-card>     
   </div>  
   <div class="col-xxxl-3 col-md-4">
       <nb-card class="solar-card">
           <nb-card-header>Current Score</nb-card-header>
           <nb-card-body>
-            <div class="info" style="text-align:center;">
-              <h3>120</h3> points
-            </div>
+            <div style="height: 92px;" echarts [options]="optionCurrentScore" class="echart"></div>               
+            <div class="info">
+              <div class="value">{{ currentPlayer.playerScore}} points</div>
+              <div class="details"><span> of</span> {{ game.settings.allowed_points}}</div>
+            </div>            
           </nb-card-body>
         </nb-card>     
   </div>  
@@ -25,9 +29,10 @@
       <nb-card class="solar-card">
           <nb-card-header>Days left</nb-card-header>
           <nb-card-body>
-            <div class="info" style="text-align:center;">
-            <h3>5</h3> days left
-            
+            <div style="height: 92px;" echarts [options]="optionDaysLeft" class="echart"></div>               
+            <div class="info">
+              <div class="value">{{ game.daysLeft.toFixed(2)}} days</div>
+              <div class="details"><span> of</span> {{ game.totalDays }}</div>
             </div>
           </nb-card-body>
         </nb-card>     
@@ -40,18 +45,25 @@
     <nb-card class="solar-card">
         <nb-card-header></nb-card-header>
         <nb-card-body>
-          <div class="info">
+          <div>
             <div *ngFor="let item of game.players">
                 <div class="row">
-                    <div class="col-md-2" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                        <img src="{{item.profileImageUrl}}" style="height: 50px" title="Felipe Pacora" alt="..." class="img-thumbnail">                  
-                        {{item.fullName}}
-                      </div>
-                      <div class="col-md-10">
-                          <div class="progress" style="height:20px">
-                              <div class="progress-bar" style="width:50%;height:20px"></div>
-                          </div>  
-                      </div>
+                  <div class="col-md-12" style="display: inline-flex;">
+                    <div style="width: 200px; text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+                      <img src="{{item.profileImageUrl}}" style="height: 50px" title="{{item.fullName}}" alt="..." class="img-thumbnail">                  
+                      {{item.fullName}}
+                    </div>
+                    <div style="width: calc(100% - 240px);padding-top: 15px;">
+                        <div class="progress" style="height:20px">
+                            <div class="progress-bar" style="width:50%;height:20px"></div>
+                        </div>  
+                    </div>
+                    <div style="width: 40px;font-size: 32px;padding-top: 5px;">
+                        <a href="#" (click)="openModel(item)" [hidden]="currentPlayer.playerId == item.playerId">
+                          <i class="nb-plus-circled"></i>
+                        </a>               
+                    </div>   
+                  </div>                   
                 </div>
                 <br>
             </div>
@@ -177,6 +189,8 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      <button type="button" class="btn btn-hero-secondary" (click)="c('Cancel')">Cancel</button>
+      <button type="button" class="btn btn-hero-success" (click)="c('Ok')">Add Points</button>      
+      <!-- <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button> -->
     </div>
   </ng-template>
