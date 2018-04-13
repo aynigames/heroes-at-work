@@ -46,23 +46,28 @@ export class GameComponent implements OnInit  {
 
     this.memberService.getCurrent().subscribe( resCurrent => {
       self.currentMember = resCurrent;
-      this.gameService.getGame(this.id).subscribe(res => {
-        const v_startedOn: any = new Date(res.startedOn);
-        const v_endedOn: any = new Date(res.endedOn);
-        const v_currentDate: any = new Date();
-        res.totalDays = (v_endedOn - v_startedOn) / (24 * 60 * 60 * 1000);
-        res.daysLeft = (v_endedOn - v_currentDate) / (24 * 60 * 60 * 1000);
-        res.players.forEach(player => {
-          if (player.memberId === self.currentMember.memberId){
-            self.currentPlayer = player;
-            self.currentIsPlaying = true;
-          }
-        });
-        self.game = res;
-        self.optionRemainingPoint = self.getChartOption(self.game.settings.allowed_points, self.currentPlayer.giverScore);
-        self.optionCurrentScore = self.getChartOption(self.game.settings.allowed_points, self.currentPlayer.playerScore);
-        self.optionDaysLeft = self.getChartOption(self.game.totalDays, self.game.daysLeft);
+      self.loadGame();
+    });
+  }
+
+  private loadGame(){
+    const self = this;
+    this.gameService.getGame(this.id).subscribe(res => {
+      const v_startedOn: any = new Date(res.startedOn);
+      const v_endedOn: any = new Date(res.endedOn);
+      const v_currentDate: any = new Date();
+      res.totalDays = (v_endedOn - v_startedOn) / (24 * 60 * 60 * 1000);
+      res.daysLeft = (v_endedOn - v_currentDate) / (24 * 60 * 60 * 1000);
+      res.players.forEach(player => {
+        if (player.memberId === self.currentMember.memberId){
+          self.currentPlayer = player;
+          self.currentIsPlaying = true;
+        }
       });
+      self.game = res;
+      self.optionRemainingPoint = self.getChartOption(self.game.settings.allowed_points, self.currentPlayer.giverScore);
+      self.optionCurrentScore = self.getChartOption(self.game.settings.allowed_points, self.currentPlayer.playerScore);
+      self.optionDaysLeft = self.getChartOption(self.game.totalDays, self.game.daysLeft);
     });
   }
 
@@ -75,7 +80,7 @@ export class GameComponent implements OnInit  {
           'description': 'string',
           'tags': ['string'],
         };
-        self.gameService.addPoints(player.playerId, pointObject).subscribe();
+        self.gameService.addPoints(player.playerId, pointObject).subscribe(() => {self.loadGame(); });
 
       }
     }, (reason) => {

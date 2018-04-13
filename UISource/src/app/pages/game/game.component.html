@@ -54,12 +54,10 @@
                       {{item.fullName}}
                     </div>
                     <div style="width: calc(100% - 240px);padding-top: 15px;">
-                        <div class="progress" style="height:20px">
-                            <div class="progress-bar" style="width:50%;height:20px"></div>
-                        </div>  
+                        <p><ngb-progressbar type="success" [value]="item.playerScore">{{item.playerScore}} points</ngb-progressbar></p>
                     </div>
-                    <div style="width: 40px;font-size: 32px;padding-top: 5px;">
-                        <a href="#" (click)="openModel(item)" [hidden]="currentPlayer.playerId == item.playerId">
+                    <div disabled style="width: 40px;font-size: 32px;padding-top: 5px;">
+                        <a href="#" (click)="openModel(item)" disabled [hidden]="currentPlayer.playerId == item.playerId">
                           <i class="nb-plus-circled"></i>
                         </a>               
                     </div>   
@@ -73,8 +71,11 @@
                 Felipe Pacora
               </div>
               <div style="width: calc(100% - 240px);padding-top: 15px;">
+                  <p><ngb-progressbar type="success" [value]="25"></ngb-progressbar></p>
                   <div class="progress" style="height:20px">
-                      <div class="progress-bar" style="width:50%;height:20px"></div>
+                      <div aria-valuemin="0" aria-valuemax="100" class="progress-bar" style="width:50%;height:20px">
+                        
+                      </div>
                   </div>  
               </div>
               <div style="width: 40px;font-size: 32px;padding-top: 5px;">
@@ -185,7 +186,11 @@
                 </ul>
               </div>
         </div>
-
+        <div class="col-md-12">
+          <div class="input-group">
+            <textarea rows="5" placeholder="Description" class="form-control"></textarea>                    
+          </div>            
+        </div>
       </div>
     </div>
     <div class="modal-footer">
