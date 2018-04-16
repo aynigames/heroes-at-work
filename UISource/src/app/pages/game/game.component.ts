@@ -53,11 +53,6 @@ export class GameComponent implements OnInit  {
   private loadGame(){
     const self = this;
     this.gameService.getGame(this.id).subscribe(res => {
-      const v_startedOn: any = new Date(res.startedOn);
-      const v_endedOn: any = new Date(res.endedOn);
-      const v_currentDate: any = new Date();
-      res.totalDays = (v_endedOn - v_startedOn) / (24 * 60 * 60 * 1000);
-      res.daysLeft = (v_endedOn - v_currentDate) / (24 * 60 * 60 * 1000);
       res.players.forEach(player => {
         if (player.memberId === self.currentMember.memberId){
           self.currentPlayer = player;
@@ -67,7 +62,15 @@ export class GameComponent implements OnInit  {
       self.game = res;
       self.optionRemainingPoint = self.getChartOption(self.game.settings.allowed_points, self.currentPlayer.giverScore);
       self.optionCurrentScore = self.getChartOption(self.game.settings.allowed_points, self.currentPlayer.playerScore);
-      self.optionDaysLeft = self.getChartOption(self.game.totalDays, self.game.daysLeft);
+
+      self.optionDaysLeft = self.getChartOption(self.game.days, self.game.daysToEnd);
+      const pointListCalc = [];
+      [1, 5, 10, 25, 50].forEach( e => {
+        if (e <= self.game.settings.allowed_points - self.currentPlayer.giverScore){
+          pointListCalc.push(e);
+        }
+      });
+      self.pointList = pointListCalc;
     });
   }
 

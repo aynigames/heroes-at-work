@@ -3,7 +3,9 @@ import { Player } from 'app/models/player';
 
 
 export class Game {
-
+    public days: number = 0;
+    public daysToEnd: number = 0;
+    public minutesToEnd: number = 0;
     public name: string;
     public gameId: number;
     public gameTemplateId: number;
@@ -23,9 +25,7 @@ export class Game {
     public visibility: string;
     public leaderboardPositions: number;
     public players: Player[];
-    public settings: any = {};    
-    public totalDays: number = 0;
-    public daysLeft: number = 0;
+    public settings: any = {};
     constructor(
     ) { 
 

@@ -1,5 +1,4 @@
 <h2>{{ game.name}} </h2>
-<span>IsPlaying: {{ currentIsPlaying}}</span>
 <div class="row">
   <div class="col-xxxl-3 col-md-4">
       <nb-card class="solar-card">
@@ -31,8 +30,8 @@
           <nb-card-body>
             <div style="height: 92px;" echarts [options]="optionDaysLeft" class="echart"></div>               
             <div class="info">
-              <div class="value">{{ game.daysLeft.toFixed(2)}} days</div>
-              <div class="details"><span> of</span> {{ game.totalDays }}</div>
+              <div class="value">{{ game.daysToEnd.toFixed(2)}} days</div>
+              <div class="details"><span> of</span> {{ game.days.toFixed(2) }}</div>
             </div>
           </nb-card-body>
         </nb-card>     
@@ -65,100 +64,11 @@
                 </div>
                 <br>
             </div>
-            <div class="row">
-              <div style="width: 200px; text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                <img src="assets/images/nick.png" style="height: 50px" title="Felipe Pacora" alt="..." class="img-thumbnail">                  
-                Felipe Pacora
-              </div>
-              <div style="width: calc(100% - 240px);padding-top: 15px;">
-                  <p><ngb-progressbar type="success" [value]="25"></ngb-progressbar></p>
-                  <div class="progress" style="height:20px">
-                      <div aria-valuemin="0" aria-valuemax="100" class="progress-bar" style="width:50%;height:20px">
-                        
-                      </div>
-                  </div>  
-              </div>
-              <div style="width: 40px;font-size: 32px;padding-top: 5px;">
-                  <a href="#" (click)="openModel()">
-                    <i class="nb-plus-circled"></i>
-                  </a>               
-              </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-2" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                    <img src="assets/images/eva.png" style="height: 50px" title="Olga Zegarra" alt="..." class="img-thumbnail">                  
-                    Olga Zegarra
-                  </div>                
-                <div class="col-md-10">
-                    <div class="progress" style="height:20px">
-                        <div class="progress-bar" style="width:40%;height:20px"></div>
-                    </div>                       
-                </div>
-              </div>  
-              <br>
-              <div class="row">
-                  <div class="col-md-2" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                      <img src="assets/images/alan.png" style="height: 50px" title="Jorge Valdivia" alt="..." class="img-thumbnail">                  
-                      Jorge Valdivia
-                    </div>                
-                  <div class="col-md-10">
-                      <div class="progress" style="height:20px">
-                          <div class="progress-bar" style="width:30%;height:20px"></div>
-                      </div>                       
-                  </div>
-                </div>  
-                <br>
-                <div class="row">
-                    <div class="col-md-2" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                        <img src="assets/images/jack.png" style="height: 50px" title="Gregory Valderrama" alt="..." class="img-thumbnail">                  
-                        Gregory Valderrama
-                      </div>                
-                    <div class="col-md-10">
-                        <div class="progress" style="height:20px">
-                            <div class="progress-bar" style="width:20%;height:20px"></div>
-                        </div>                       
-                    </div>
-                  </div>  
-                  <br>
-                  <div class="row">
-                      <div class="col-md-2" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                          <img src="assets/images/kate.png" style="height: 50px" title="Miguel Koo" alt="..." class="img-thumbnail">                  
-                          Miguel Koo
-                        </div>                
-                      <div class="col-md-10">
-                          <div class="progress" style="height:20px">
-                              <div class="progress-bar" style="width:10%;height:20px"></div>
-                          </div>                       
-                      </div>
-                  </div>                                                                    
-
-              
+            <br> 
           </div>
         </nb-card-body>
       </nb-card>       
   
-  </div> 
-  <div class="col-md-12">
-
-
-
-    <div class="input-group">
-        <div class="input-group-btn" ngbDropdown>
-          <button type="button" class="btn btn-success dropdown-toggle" ngbDropdownToggle>
-            Action
-          </button>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item">Action</li>
-            <li class="dropdown-item">Another action</li>
-            <li class="dropdown-item">Something else here</li>
-            <div role="separator" class="dropdown-divider"></div>
-            <li class="dropdown-item">Separated link</li>
-          </ul>
-        </div>
-        <!-- <input type="text" class="form-control"> -->
-      </div>
-
   </div> 
 </div>
 
